@@ -50,8 +50,6 @@ public class ${entityName}ServiceImpl {
         if (!bool) {
             return Result.createFailure(ResultCode.DATABASE_EDIT_FAILURE);
         }
-
-
         return Result.createBySuccess(bool);
     }
 
@@ -66,8 +64,7 @@ public class ${entityName}ServiceImpl {
         return Result.createBySuccess(db${entityName}Service.getOne(new QueryWrapper<${entityName}>(entity)));
     }
 
-    public Result<List<${entityName}>> selectPage(RequestPage<${entityName}> entity)
-    {
+    public Result<List<${entityName}>> selectPage(RequestPage<${entityName}> entity) {
         if (entity == null ) {
             return Result.createFailure(ResultCode.PARAM_IS_INVALID);
         }
@@ -75,16 +72,24 @@ public class ${entityName}ServiceImpl {
         pageEntity.setCurrent(entity.getCurrent());
         pageEntity.setSize(entity.getSize());
         pageEntity.setOrders(entity.getOrders());
-        IPage<${entityName}> selectPage = db${entityName}Service.page(pageEntity,new QueryWrapper<${entityName}>(entity.getData()));
+        //优化，把id做大于条件
+        Long id=null;
+        if(entity!=null&&entity.getData()!=null||entity.getData().getId()!=null){
+            id=entity.getData().getId();
+            entity.getData().setId(null);
+        }
+        QueryWrapper<${entityName}> query=new QueryWrapper(entity.getData());
+        if(id!=null) {
+            query.lambda().ge(CodegenUser::getId,id);
+        }
+        IPage<${entityName}> selectPage = db${entityName}Service.page(pageEntity,query);
         return Result.createBySuccess(selectPage.getRecords());
     }
 
     public <T> Result<List<${entityName}>> selectIn(RequestIn<${entityName},T> entity)
     {
         QueryWrapper<${entityName}> queryWrapper = new QueryWrapper<${entityName}>(entity.getData());
-
         queryWrapper.in(entity.getColumnName(),entity.getInValues());
-
         List<${entityName}> entitys= db${entityName}Service.list(queryWrapper);
         return Result.createBySuccess(entitys);
     }
