@@ -17,7 +17,7 @@ GeneratorServiceImpl类包含了生成方法，buildCodegen()方法会生成整�
 ## 项目逻辑
 1.项目本身使用springboot,mybatis-plus,本身的ORM也由mybatis-plus-generator生成,表结构信息通过mysql的information_schema库查询，两个实体Tables,Columns
 对应information_schema中的表，如mysql版本表结构不同，则可做对应修改.  
-2.项目配置，项目中ReadConfigServiceImpl读取配置使用. 数据库配置读取information_schema中表结构信息。
+2.项目配置，项目中ReadConfigServiceImpl读取配置使用. 数据库配置读取information_schema中表结构信息。  
 --buildconfig:  
 -----packageName: 包名  
 -----artifactName: CodegenBuildBoot  
