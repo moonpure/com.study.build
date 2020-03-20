@@ -15,10 +15,36 @@ git下有三个独立项目(可分别独立使用),只是把三个项目合到�
 ## 项目使用
 GeneratorServiceImpl类包含了生成方法，buildCodegen()方法会生成整个项目，里面分别调用不同项目文件生成.
 ## 项目逻辑
+1.项目本身使用springboot,mybatis-plus,本身的ORM也由mybatis-plus-generator生成,表结构信息通过mysql的information_schema库查询，两个实体Tables,Columns
+对应information_schema中的表，如mysql版本表结构不同，则可做对应修改.  
+2.项目配置，项目中ReadConfigServiceImpl读取配置使用. 数据库配置读取information_schema中表结构信息。
+--buildconfig:  
+-----packageName: 包名  
+-----artifactName: CodegenBuildBoot  
+-----artifactId: codegen-build-boot  
+-----springBootVersion: springboot版本号  
+-----projectVersion: 生成项目版本号  
+-----saveDir: 生成项目保存目录   
+-----tableSchema: 数据库架构名(库名)  
+3.项目结构  
+--src.main  
+-----java.com.study.build.codegenboot  
+--------core 通用、工具目录  
+--------dao  mybatis-plus-generator生成的数据库操作目录mapper,dbmodel,dbservice  
+--------service 项目逻目录  
+-----service  
+--------mapper  数据库mapper.xml目录  
+--------templates 项目模板   
+4.运行逻辑  
+GeneratorServiceImpl类中生成方法,mybatis-plus-generator生成通过MybatisPlusGeneratorServiceImpl类实现，
+项目的其它实现使用FreeMarkerServiceImpl.
 ## 二次开发
+项目使用FreeMarker模板引擎，其它模板引擎参考FreeMarkerServiceImpl实现。也可参考mybatis-plus-generator生成逻辑。  
+生成项目的组织架构更改参考GeneratorServiceImpl。  
+项目中以简单为主，实现不足及建义望交流。 
 # ---tag功能---
 项目中通过tag区分项目板本及功能列表
 ## tag 1.0.0
 1.springboot 项目生成.   
 2.数库增、删、改、分页查询.   
-3.优化mysql分页查询，传入上次最大id，查询大于id(如传入id).  
+3.优化mysql分页查询，传入上次最大id，查询大于id(如传入).  
