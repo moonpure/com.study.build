@@ -1,9 +1,8 @@
-
+## 目标:  
+生成真接可运行项目  
 ## 功能:  
 使用模板引擎(freemarker)、mybatis-plus生成java完整项目(springboot、springcloud),包括pom、Application、controller、service、yml,
 mybatis-plus的mapper、entity、dbservice、mapper.xml.  
-## 目标:  
-生成项目真接可运行  
 ## 实现原理
 通过模板引擎(freemarker)读取模板文件写指定文件到指定目录(根据项目文件组织型式),主要实再类是 'FreeMarkerServiceImpl' 读、写。如写文件目录
 不正确，请调整文件目录结构。为了简化，数据库操作部份用mybatis-plus-generator生成，其它项目文件使用 'FreeMarkerServiceImpl' 生成.  
