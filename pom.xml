@@ -10,5 +10,13 @@
     <modules>
         <module>com.study.build.codegenboot</module>
         <module>com.study.build.cloudprovider</module>
+        <module>com.study.build.cloudeureka</module>
     </modules>
+    <repositories>
+        <repository>
+            <id>nexus-aliyun</id>
+            <name>Nexus aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
 </project>

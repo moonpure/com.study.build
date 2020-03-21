@@ -6,7 +6,7 @@ spring:
   profiles:
     active: @maven.env@
   redis:
-    host: 127.0.0.1
+    host: localhost
     password:
     port: 6379
   datasource:

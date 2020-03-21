@@ -2,7 +2,7 @@ server:
   port: 0
 spring:
   application:
-    name: ${artifactId}-local
+    name: ${artifactId}-dev
   profiles:
     active: @maven.env@
   redis:
@@ -20,3 +20,7 @@ mybatisPlus:
   #打印日志
   configuration:
      logImpl: org.apache.ibatis.logging.stdout.StdOutImpl
+eureka:
+   client:
+      service-url:
+         defaultZone: http://localhost:8100/eureka/

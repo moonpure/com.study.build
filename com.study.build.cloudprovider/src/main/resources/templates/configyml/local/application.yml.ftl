@@ -20,3 +20,7 @@ mybatisPlus:
   #打印日志
   configuration:
      logImpl: org.apache.ibatis.logging.stdout.StdOutImpl
+eureka:
+   client:
+      service-url:
+         defaultZone: http://localhost:8100/eureka/
