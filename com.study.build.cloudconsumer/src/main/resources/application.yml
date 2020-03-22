@@ -2,7 +2,7 @@ server:
   port: 0
 spring:
   application:
-    name: codegen-springboot
+    name: codegen-cloudprovider
   redis:
     host: localhost
     password:
@@ -19,10 +19,11 @@ mybatisPlus:
   configuration:
      logImpl: org.apache.ibatis.logging.stdout.StdOutImpl
 buildconfig:
-  packageName: com.study.build.codegenboot
-  artifactName: CodegenBuildBoot
-  artifactId: codegen-build-boot
+  packageName: com.study.build.cloudconsumer
+  artifactName: CodegenCloudConsumer
+  artifactId: codegen-build-cloudconsumer
   springBootVersion: 2.2.5.RELEASE
+  springCloudVersion: Hoxton.SR3
   projectVersion: 1.0.0
-  saveDir: /Users/huangqijun/tem/codegenboot
+  saveDir: /Users/huangqijun/tem/cloudconsumer
   tableSchema: codegen_build

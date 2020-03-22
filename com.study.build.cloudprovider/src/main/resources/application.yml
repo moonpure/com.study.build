@@ -4,7 +4,7 @@ spring:
   application:
     name: codegen-cloudprovider
   redis:
-    host: 127.0.0.1
+    host: localhost
     password:
     port: 6379
   datasource:
@@ -25,5 +25,5 @@ buildconfig:
   springBootVersion: 2.2.5.RELEASE
   springCloudVersion: Hoxton.SR3
   projectVersion: 1.0.0
-  saveDir: /Users/huangqijun/tem
+  saveDir: /Users/huangqijun/tem/cloudprovider
   tableSchema: codegen_build
