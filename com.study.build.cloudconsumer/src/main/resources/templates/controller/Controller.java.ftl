@@ -1,7 +1,7 @@
 package ${packageName}.controller;
 
 import ${packageName}.core.*;
-import ${packageName}.dao.dbmodel.${entityName};
+import ${packageName}.feignservice.entity.${entityName};
 import ${packageName}.service.${entityName}ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/${entityNameLower}")
+@RequestMapping("/codegenUser")
 class ${entityName}Controller {
     @Autowired
    ${entityName}ServiceImpl ${entityNameLower}Service;
