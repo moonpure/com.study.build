@@ -10,8 +10,7 @@ import java.time.LocalDateTime;
  * ${tableComment}
  */
 @Data
-public class ${entityName} implements Serializable {
-  private static final long serialVersionUID=1L;
+public class ${entityName}  {
 <#list tableColumns as column>
   /**
    * ${column.columnComment}
