@@ -15,8 +15,8 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 @Service
 public class ${entityName}ServiceImpl {
@@ -80,7 +80,7 @@ public class ${entityName}ServiceImpl {
         }
         QueryWrapper<${entityName}> query=new QueryWrapper(entity.getData());
         if(id!=null) {
-            query.lambda().ge(CodegenUser::getId,id);
+            query.lambda().ge(${entityName}::getId,id);
         }
         IPage<${entityName}> selectPage = db${entityName}Service.page(pageEntity,query);
         return Result.createBySuccess(selectPage.getRecords());
@@ -89,7 +89,9 @@ public class ${entityName}ServiceImpl {
     public <T> Result<List<${entityName}>> selectIn(RequestIn<${entityName},T> entity)
     {
         QueryWrapper<${entityName}> queryWrapper = new QueryWrapper<${entityName}>(entity.getData());
-        queryWrapper.in(entity.getColumnName(),entity.getInValues());
+        if(!StringUtils.isAllBlank(entity.getColumnName())&& entity.getInValues()!=null&&entity.getInValues().size()>0) {
+            queryWrapper.in(entity.getColumnName(), entity.getInValues());
+        }
         List<${entityName}> entitys= db${entityName}Service.list(queryWrapper);
         return Result.createBySuccess(entitys);
     }

@@ -25,4 +25,4 @@ eureka:
       service-url:
          defaultZone: http://localhost:8100/eureka/
 feignconfig:
-   providename: codegen-cloudprovider-local
+   providename: codegen-build-cloudprovider-local

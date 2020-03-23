@@ -37,7 +37,7 @@ class ${entityName}Controller {
     }
 
     @PostMapping("/getone")
-    public Result<${entityName}> getOne(@RequestBody CodegenUser entity) {
+    public Result<${entityName}> getOne(@RequestBody ${entityName} entity) {
         return ${entityNameLower}Service.getOne(entity);
     }
 

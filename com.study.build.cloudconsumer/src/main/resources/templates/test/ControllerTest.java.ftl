@@ -1,8 +1,7 @@
 package ${packageName}.controller;
 
-import com.baomidou.mybatisplus.core.toolkit.Sequence;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ${packageName}.dao.dbmodel.${entityName};
+import ${packageName}.feignservice.entity.${entityName};
 import org.junit.jupiter.api.Test;
 import ${packageName}.core.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +43,10 @@ class ${entityName}ControllerTest {
         //请求数据
         RequestBuilder request = null;
 
-        request = post("/${entityNameLower}/save")
+        request = post("/${artifactName}/${entityNameLower}/save")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody)
-                .accept(MediaType.APPLICATION_JSON);
+                .accept(MediaType.APPLICATION_JSON_UTF8);
 
         String retContent = mockMvc.perform(request)
                           .andDo(print())
@@ -68,7 +67,7 @@ class ${entityName}ControllerTest {
          //请求数据
          RequestBuilder request = null;
 
-         request = post("/${entityNameLower}/updateid")
+         request = post("/${artifactName}/${entityNameLower}/updateid")
                  .contentType(MediaType.APPLICATION_JSON)
                  .content(requestBody)
                  .accept(MediaType.APPLICATION_JSON_UTF8);
@@ -89,7 +88,7 @@ class ${entityName}ControllerTest {
     void getById() throws Exception {
          //请求数据
          RequestBuilder request = null;
-         request = get("/${entityNameLower}/getid/1")
+         request = get("/${artifactName}/${entityNameLower}/getid/1")
                  .accept(MediaType.APPLICATION_JSON_UTF8);
 
          String retContent = mockMvc.perform(request)
@@ -109,7 +108,7 @@ class ${entityName}ControllerTest {
          String requestBody = objectMapper.writeValueAsString(entity);
          //请求数据
          RequestBuilder request = null;
-         request = post("/${entityNameLower}/getone")
+         request = post("/${artifactName}/${entityNameLower}/getone")
                  .contentType(MediaType.APPLICATION_JSON)
                  .content(requestBody)
                  .accept(MediaType.APPLICATION_JSON_UTF8);
@@ -133,7 +132,7 @@ class ${entityName}ControllerTest {
          String requestBody = objectMapper.writeValueAsString(entityPage);
          //请求数据
          RequestBuilder request = null;
-         request = post("/${entityNameLower}/select")
+         request = post("/${artifactName}/${entityNameLower}/select")
                  .contentType(MediaType.APPLICATION_JSON)
                  .content(requestBody)
                  .accept(MediaType.APPLICATION_JSON_UTF8);
@@ -159,7 +158,7 @@ class ${entityName}ControllerTest {
          String requestBody = objectMapper.writeValueAsString(entityIn);
          //请求数据
          RequestBuilder request = null;
-         request = post("/${entityNameLower}/selectin")
+         request = post("/${artifactName}/${entityNameLower}/selectin")
                  .contentType(MediaType.APPLICATION_JSON)
                  .content(requestBody)
                  .accept(MediaType.APPLICATION_JSON_UTF8);
