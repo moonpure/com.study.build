@@ -58,5 +58,9 @@ GeneratorServiceImpl类中生成方法,mybatis-plus-generator生成通过Mybatis
 2.增加cloudeureka 注册中心，方便测式cloud
 
 ## tag 1.2.0
+1. springcloud consumer 项目生成  
+2. springcloud consumer entity生成
+
+## tag 1.3.0
 1. springcloud provider 生成test
-2. springcloud provider 使用mybatis Id 生成器
+1. springcloud provider 使用mybatis id生成器
