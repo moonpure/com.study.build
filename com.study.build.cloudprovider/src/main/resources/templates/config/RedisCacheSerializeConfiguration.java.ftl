@@ -49,7 +49,7 @@ public class RedisCacheSerializeConfiguration {
         //下面两个序要定义，但又不能用外面的，所以这新建了
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-
+        //sona扫描
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         objectMapper.registerModule(javaTimeModule);
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);

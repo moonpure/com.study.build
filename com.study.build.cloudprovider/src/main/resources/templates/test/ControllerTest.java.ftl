@@ -13,7 +13,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.List;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -89,7 +92,8 @@ class ${entityName}ControllerTest {
     void getById() throws Exception {
          //请求数据
          RequestBuilder request = null;
-         request = get("/${entityNameLower}/getid/1")
+         Long id=0l;
+         request = get("/${entityNameLower}/getid/"+id)
                  .accept(MediaType.APPLICATION_JSON_UTF8);
 
          String retContent = mockMvc.perform(request)
@@ -99,7 +103,21 @@ class ${entityName}ControllerTest {
                            .andReturn().getResponse().getContentAsString();
          System.out.println(retContent);
     }
+   @Test
+    void getByName() throws Exception {
+            //请求数据
+            RequestBuilder request = null;
+            String name="test";
+            request = get("/${entityNameLower}/getname/"+name)
+            .accept(MediaType.APPLICATION_JSON_UTF8);
 
+            String retContent = mockMvc.perform(request)
+            .andDo(print())
+            .andExpect(status().isOk()) //状态吗是否相等
+            .andExpect(jsonPath("$.code").value(0))//返回成功状态码
+            .andReturn().getResponse().getContentAsString();
+            System.out.println(retContent);
+    }
     @Test
     void getOne() throws Exception {
          ${entityName} entity = new ${entityName}();
@@ -168,6 +186,37 @@ class ${entityName}ControllerTest {
                            .andExpect(status().isOk()) //状态吗是否相等
                            .andExpect(jsonPath("$.code").value(0))//返回成功状态码
                            .andReturn().getResponse().getContentAsString();
+        System.out.println(retContent);
+    }
+    @Test
+    void delById() throws Exception {
+        RequestBuilder request = null;
+        Long id=0l;
+        request = put("/${entityNameLower}/delid/"+id)
+            .accept(MediaType.APPLICATION_JSON_UTF8);
+
+        String retContent = mockMvc.perform(request)
+            .andDo(print())
+            .andExpect(status().isOk()) //状态吗是否相等
+            .andExpect(jsonPath("$.code").value(0))//返回成功状态码
+            .andReturn().getResponse().getContentAsString();
+        System.out.println(retContent);
+    }
+    @Test
+    void delByIds() throws Exception{
+        List<Long> ids=Arrays.asList(1l);
+        String requestBody = objectMapper.writeValueAsString(ids);
+        //请求数据
+        RequestBuilder request = null;
+        request = post("/${entityNameLower}/delids")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(requestBody)
+            .accept(MediaType.APPLICATION_JSON_UTF8);
+        String retContent = mockMvc.perform(request)
+            .andDo(print())
+            .andExpect(status().isOk()) //状态吗是否相等
+            .andExpect(jsonPath("$.code").value(0))//返回成功状态码
+            .andReturn().getResponse().getContentAsString();
         System.out.println(retContent);
     }
 }
