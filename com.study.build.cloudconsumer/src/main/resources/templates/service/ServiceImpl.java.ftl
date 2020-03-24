@@ -41,8 +41,14 @@ public class ${entityName}ServiceImpl {
         }
         return ${entityNameLower}Feign.selectPage(entity);
     }
-    public <T> Result<List<${entityName}>> selectIn(RequestIn<${entityName},Long> entity)
-    {
+    public <T> Result<List<${entityName}>> selectIn(RequestIn<${entityName},Long> entity){
         return ${entityNameLower}Feign.selectIn(entity);
+    }
+    public <T> T convertResult(Result<T> tResult) {
+        if(tResult==null||tResult.getCode()!=ResultCode.SUCCESS.getCode())
+        {
+        return null;
+        }
+        return tResult.getData();
     }
 }

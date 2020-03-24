@@ -24,8 +24,8 @@ public class ${entityName}ServiceImpl {
     @Autowired
     StringRedisTemplate redisTemplate;
     @Caching(cacheable = {
-         @Cacheable(cacheNames = "${entityName}Save", key = "#entity.id"),
-         @Cacheable(cacheNames = "${entityName}Save", key = "#entity.name")})
+         @Cacheable(cacheNames = "${artifactId}-${entityName}Save", key = "#entity.id"),
+         @Cacheable(cacheNames = "${artifactId}-${entityName}Save", key = "#entity.name")})
     public Result<Boolean> save(${entityName} entity) {
         boolean bool = db${entityName}Service.save(entity);
         if (!bool) {
@@ -34,8 +34,7 @@ public class ${entityName}ServiceImpl {
 
         return Result.createBySuccess(bool);
     }
-    @Caching(evict = {
-        @CacheEvict(value = "${entityName}ById", key = "#entity.id")})
+    @CacheEvict(value = "${artifactId}-${entityName}ById", key = "#entity.id")
     public Result<Boolean> updateById(${entityName} entity) {
         if(entity==null||entity.getId()==null){
         return Result.createFailure(ResultCode.PARAM_IS_INVALID);
@@ -59,7 +58,7 @@ public class ${entityName}ServiceImpl {
         }
         return Result.createBySuccess(bool);
     }
-    @Cacheable(cacheNames = "${entityName}ById", key = "#id" , sync = true)
+    @Cacheable(cacheNames = "${artifactId}-${entityName}ById", key = "#id" , sync = true)
     public Result<${entityName}> getById(Long id) {
         if (id == null || id <= 0) {
             return Result.createFailure(ResultCode.PARAM_IS_INVALID);
@@ -67,7 +66,7 @@ public class ${entityName}ServiceImpl {
         return Result.createBySuccess(db${entityName}Service.getById(id));
     }
 
-    @Cacheable(cacheNames = "${entityName}ByName", key = "#name" , sync = true)
+    @Cacheable(cacheNames = "${artifactId}-${entityName}ByName", key = "#name" , sync = true)
     public Result<${entityName}> getByName(String name) {
         if (StringUtils.isAllBlank(name)) {
             return Result.createFailure(ResultCode.PARAM_IS_INVALID);
@@ -110,7 +109,7 @@ public class ${entityName}ServiceImpl {
         List<${entityName}> entitys= db${entityName}Service.list(queryWrapper);
         return Result.createBySuccess(entitys);
       }
-    @CacheEvict(value = "${entityName}ById", key = "#id")
+    @CacheEvict(value = "${artifactId}-${entityName}ById", key = "#id")
     public Result<Boolean> delById(Long id){
         if(id==null||id<=0){
         return Result.createFailure(ResultCode.PARAM_IS_INVALID);
@@ -133,6 +132,12 @@ public class ${entityName}ServiceImpl {
         {
         return false;
         }
-        return  redisTemplate.delete("${entityName}ByName::"+name);
+        return  redisTemplate.delete("${artifactId}-${entityName}ByName::"+name);
+    }
+    public <T> T convertResult(Result<T> tResult) {
+        if(tResult==null||tResult.getCode()!=ResultCode.SUCCESS.getCode()){
+           return null;
+        }
+        return tResult.getData();
     }
 }

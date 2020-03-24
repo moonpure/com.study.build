@@ -28,10 +28,10 @@ public class RedisCacheSerializeConfiguration {
 
     @Bean
     public RedisCacheManager cacheManager(RedisConnectionFactory connectionFactory) {
-        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofDays(30))
+        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofHours(5))
                 .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(keySerializer()))
-                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(valueSerializer()))
-                ;//.disableCachingNullValues();
+                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(valueSerializer()));
+                //.disableCachingNullValues();
         RedisCacheManager redisCacheManager = RedisCacheManager.builder(connectionFactory).cacheDefaults(config)
                 .transactionAware().build();
         return redisCacheManager;
