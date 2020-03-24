@@ -2,7 +2,7 @@ server:
   port: 0
 spring:
   application:
-    name: codegen-cloudprovider
+    name: codegen-cloudconsumer
   redis:
     host: localhost
     password:

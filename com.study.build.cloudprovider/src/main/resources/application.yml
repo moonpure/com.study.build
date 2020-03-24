@@ -20,8 +20,8 @@ mybatisPlus:
      logImpl: org.apache.ibatis.logging.stdout.StdOutImpl
 buildconfig:
   packageName: com.study.build.cloudprovider
-  artifactName: CodegenCloudProvider
-  artifactId: codegen-build-cloudprovider
+  artifactName: CodegenProvider
+  artifactId: codegen-provider
   springBootVersion: 2.2.5.RELEASE
   springCloudVersion: Hoxton.SR3
   projectVersion: 1.0.0

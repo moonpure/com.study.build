@@ -3,9 +3,10 @@ package ${packageName}.feignservice.fallback;
 import ${packageName}.core.*;
 import ${packageName}.feignservice.entity.${entityName};
 import ${packageName}.feignservice.feign.${entityName}Feign;
-
+import org.springframework.stereotype.Component;
 import java.util.List;
 
+@Component
 public class ${entityName}Fallback implements ${entityName}Feign {
     @Override
     public Result<Boolean> save( ${entityName} entity) {

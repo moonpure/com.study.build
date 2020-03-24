@@ -46,7 +46,6 @@ GeneratorServiceImpl类中生成方法,mybatis-plus-generator生成通过Mybatis
 项目使用FreeMarker模板引擎，其它模板引擎参考FreeMarkerServiceImpl实现。也可参考mybatis-plus-generator生成逻辑。  
 生成项目的组织架构更改参考GeneratorServiceImpl。  
 项目中以简单为主，实现不足、建义、交流
-![wiki](https://coding-net-production-file-ci.codehub.cn/90a29d30-6ac1-11ea-bfb6-e30eeedc6cfa.png?sign=Z2n2G3YbjAXRB6n6EBM3MBbU06thPTEyNTcyNDI1OTkmaz1BS0lEYXk4M2xGbWFTNlk0TFRkek1WTzFTZFpPeUpTTk9ZcHImZT0xNTg0OTM1MTg5JnQ9MTU4NDcxOTE4OSZyPTM0MjgzNzQyJmY9LzkwYTI5ZDMwLTZhYzEtMTFlYS1iZmI2LWUzMGVlZWRjNmNmYS5wbmcmYj1jb2RpbmctbmV0LXByb2R1Y3Rpb24tZmlsZQ==)
 # ---tag功能---
 项目中通过tag区分项目板本及功能列表
 ## tag 1.0.0
@@ -56,11 +55,12 @@ GeneratorServiceImpl类中生成方法,mybatis-plus-generator生成通过Mybatis
 ## tag 1.1.0
 1.springcloud provider  项目生成  
 2.增加cloudeureka 注册中心，方便测式cloud
-
 ## tag 1.2.0
 1. springcloud consumer 项目生成  
 2. springcloud consumer entity生成
-
 ## tag 1.3.0
 1. springcloud provider 生成test
-1. springcloud provider 使用mybatis id生成器
+2. springcloud provider 使用mybatis id生成器
+## tag 1.4.0
+1. springcloud consumer 生成test
+2. springcloud provider 使用spring cache

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
-@FeignClient(value = <#noparse>"${feignconfig.providename}"</#noparse>, path = "${entityNameLower}",fallback = ${entityName}Fallback.class)
+@FeignClient(name = <#noparse>"${feignconfig.providename}"</#noparse>, path = "${entityNameLower}",contextId ="${entityNameLower}",fallback = ${entityName}Fallback.class)
 public interface ${entityName}Feign {
     @PostMapping("/save")
     Result<Boolean> save(@RequestBody ${entityName} entity);
