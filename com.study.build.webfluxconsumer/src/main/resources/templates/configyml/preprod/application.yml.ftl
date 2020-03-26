@@ -2,7 +2,7 @@ server:
   port: 0
 spring:
   application:
-    name: ${artifactId}-local
+    name: ${artifactId}-preprod
   profiles:
     active: @maven.env@
   redis:
@@ -13,5 +13,5 @@ eureka:
    client:
       service-url:
          defaultZone: http://localhost:8100/eureka/
-feignconfig:
-   providename: codegen-build-cloudprovider-local
+serviceconfig:
+   providename: codegen-webfluxprovider-preprod

@@ -13,5 +13,5 @@ eureka:
    client:
       service-url:
          defaultZone: http://localhost:8100/eureka/
-feignconfig:
-   providename: codegen-build-cloudprovider-local
+serviceconfig:
+   providename: codegen-webfluxprovider-local

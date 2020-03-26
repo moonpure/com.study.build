@@ -32,8 +32,8 @@ public class ${entityName}ServiceImpl {
         return ${entityNameLower}Feign.getById(id);
     }
 
-    public Result<${entityName}> getOne(${entityName} entity) {
-        return ${entityNameLower}Feign.getOne(entity);
+    public Result<${entityName}> getOne(String name) {
+        return ${entityNameLower}Feign.getOne(name);
     }
     public Result<List<${entityName}>> selectPage(RequestPage<${entityName}> entity) {
         if (entity == null ) {

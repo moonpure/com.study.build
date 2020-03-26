@@ -24,8 +24,8 @@ public interface ${entityName}Feign {
     @GetMapping("/getid/{id}")
     Result<${entityName}> getById(@PathVariable("id") Long id);
 
-    @PostMapping("/getone")
-    Result<${entityName}> getOne(@RequestBody ${entityName} entity);
+    @PostMapping("/getone/{name}")
+    Result<${entityName}> getOne(@PathVariable("name") String name);
 
     @PostMapping("/select")
     Result<List<${entityName}>> selectPage(@RequestBody RequestPage<${entityName}> entity);

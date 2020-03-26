@@ -1,4 +1,4 @@
-package ${packageName}r.core;
+package ${packageName}.core;
 
 import lombok.Data;
 
