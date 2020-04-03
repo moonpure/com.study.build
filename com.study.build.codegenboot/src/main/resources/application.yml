@@ -22,7 +22,7 @@ buildconfig:
   packageName: com.study.build.codegenboot
   artifactName: CodegenBuildBoot
   artifactId: codegen-build-boot
-  springBootVersion: 2.2.5.RELEASE
+  springBootVersion: 2.2.6.RELEASE
   projectVersion: 1.0.0
   saveDir: /Users/huangqijun/tem/codegenboot
   tableSchema: codegen_build

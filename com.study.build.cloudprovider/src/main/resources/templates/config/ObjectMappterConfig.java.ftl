@@ -26,6 +26,7 @@ public class ObjectMappterConfig {
 
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         objectMapper.registerModule(createJavaTimeModule());
+        objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
         objectMapper //.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
