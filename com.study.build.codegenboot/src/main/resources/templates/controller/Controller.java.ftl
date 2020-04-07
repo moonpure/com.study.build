@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/codegenUser")
+@RequestMapping("/${entityNameLower}")
 class ${entityName}Controller {
     @Autowired
    ${entityName}ServiceImpl ${entityNameLower}Service;
@@ -37,7 +37,7 @@ class ${entityName}Controller {
     }
 
     @PostMapping("/getone")
-    public Result<${entityName}> getOne(@RequestBody CodegenUser entity) {
+    public Result<${entityName}> getOne(@RequestBody ${entityName} entity) {
         return ${entityNameLower}Service.getOne(entity);
     }
 

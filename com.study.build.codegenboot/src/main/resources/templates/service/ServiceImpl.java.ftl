@@ -80,7 +80,7 @@ public class ${entityName}ServiceImpl {
         }
         QueryWrapper<${entityName}> query=new QueryWrapper(entity.getData());
         if(id!=null) {
-            query.lambda().ge(CodegenUser::getId,id);
+            query.lambda().ge(${entityName}::getId,id);
         }
         IPage<${entityName}> selectPage = db${entityName}Service.page(pageEntity,query);
         return Result.createBySuccess(selectPage.getRecords());
