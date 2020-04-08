@@ -11,18 +11,26 @@ import ${packageName}.core.RequestIn;
 import ${packageName}.dao.dbmodel.${entityName};
 import ${packageName}.dao.dbservice.Db${entityName}Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.session.ResultHandler;
 import org.springframework.stereotype.Service;
-
+import javax.servlet.http.HttpServletResponse;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.OutputStream;
+import java.net.URLEncoder;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-
 import java.util.List;
 
 @Service
+@Slf4j
 public class ${entityName}ServiceImpl {
     @Autowired
     Db${entityName}Service db${entityName}Service;
-
+    @Autowired
+    HttpServletResponse response;
+    @Autowired
+    ObjectMapper objectMapper;
     public Result<Boolean> save(${entityName} entity) {
         boolean bool = db${entityName}Service.save(entity);
         if (!bool) {
@@ -92,5 +100,34 @@ public class ${entityName}ServiceImpl {
         queryWrapper.in(entity.getColumnName(),entity.getInValues());
         List<${entityName}> entitys= db${entityName}Service.list(queryWrapper);
         return Result.createBySuccess(entitys);
+    }
+    public void selectFlow(${entityName} entity, ResultHandler<${entityName}> handler) {
+        QueryWrapper<${entityName}> queryWrapper = new QueryWrapper<>(entity);
+        db${entityName}Service.listFlow(queryWrapper, handler);
+    }
+
+    public void download(${entityName} entity) {
+        // 配置文件下载
+        response.setHeader("content-type", "application/octet-stream");
+        response.setContentType("application/octet-stream");
+        // 下载文件能正常显示中文, 可以导入 iRecorder Web IDE中的 .side 文件
+        try {
+            String filename = URLEncoder.encode("testStream.side", "UTF-8");
+            response.setHeader("Content-Disposition", "attachment;filename=CodegenUser");
+            OutputStream os = response.getOutputStream();
+            QueryWrapper<${entityName}> queryWrapper = new QueryWrapper<>(entity);
+            db${entityName}Service.listFlow(queryWrapper, resultContext -> {
+                ${entityName} oneEntity = resultContext.getResultObject();
+                try {
+                //输出是一个一个的流对像，如要解析还需要处于理
+                    byte[] outByte = objectMapper.writeValueAsBytes(oneEntity);
+                    os.write(outByte);
+                } catch (Exception ex) {
+                    log.error(ex.toString());
+                }
+            });
+        } catch (Exception ex) {
+            log.error(ex.toString());
+        }
     }
 }
