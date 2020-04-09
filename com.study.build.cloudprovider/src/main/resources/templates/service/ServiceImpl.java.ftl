@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.OutputStream;
 import java.net.URLEncoder;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.*;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import java.time.LocalDateTime;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 @Service
 @Slf4j
@@ -30,6 +30,11 @@ public class ${entityName}ServiceImpl {
     HttpServletResponse response;
     @Autowired
     ObjectMapper objectMapper;
+    @Autowired
+    StringRedisTemplate redisTemplate;
+    @Caching(cacheable = {
+        @Cacheable(cacheNames = "${artifactId}-${entityName}Save", key = "#entity.id"),
+        @Cacheable(cacheNames = "${artifactId}-${entityName}Save", key = "#entity.name")})
     public Result<Boolean> save(${entityName} entity) {
         boolean bool = db${entityName}Service.save(entity);
         if (!bool) {
@@ -38,14 +43,17 @@ public class ${entityName}ServiceImpl {
 
         return Result.createBySuccess(bool);
     }
-
+    @CacheEvict(value = "${artifactId}-${entityName}ById", key = "#entity.id")
     public Result<Boolean> updateById(${entityName} entity) {
-        boolean bool = db${entityName}Service.updateById(entity);
-        if (!bool) {
-            return Result.createFailure(ResultCode.DATABASE_EDIT_FAILURE);
+        if(entity==null||entity.getId()==null){
+            return Result.createFailure(ResultCode.PARAM_IS_INVALID);
         }
-
-        return Result.createBySuccess(bool);
+        ${entityName} entityDb=db${entityName}Service.getById(entity.getId());
+        if(entityDb==null){
+            return Result.createFailure(ResultCode.PARAM_IS_INVALID);
+        }
+        delByName(entityDb.getName());
+        return Result.createBySuccess(db${entityName}Service.updateById(entity));
     }
 
     public Result<Boolean> update(List<${entityName}> entities) {
@@ -59,7 +67,7 @@ public class ${entityName}ServiceImpl {
         }
         return Result.createBySuccess(bool);
     }
-
+    @Cacheable(cacheNames = "${artifactId}-${entityName}ById", key = "#id" , sync = true)
     public Result<${entityName}> getById(Long id) {
         if (id == null || id <= 0) {
             return Result.createFailure(ResultCode.PARAM_IS_INVALID);
@@ -67,6 +75,15 @@ public class ${entityName}ServiceImpl {
         return Result.createBySuccess(db${entityName}Service.getById(id));
     }
 
+    @Cacheable(cacheNames = "${artifactId}-${entityName}ByName", key = "#name" , sync = true)
+    public Result<${entityName}> getByName(String name) {
+        if (StringUtils.isAllBlank(name)) {
+            return Result.createFailure(ResultCode.PARAM_IS_INVALID);
+        }
+        ${entityName} entity =new ${entityName}();
+        entity.setName(name);
+        return getOne(entity);
+    }
     public Result<${entityName}> getOne(${entityName} entity) {
         return Result.createBySuccess(db${entityName}Service.getOne(new QueryWrapper<${entityName}>(entity)));
     }
@@ -104,7 +121,12 @@ public class ${entityName}ServiceImpl {
         QueryWrapper<${entityName}> queryWrapper = new QueryWrapper<>(entity);
         db${entityName}Service.listFlow(queryWrapper, handler);
     }
-
+    public Boolean delByName(String name){
+        if(StringUtils.isAllBlank(name)){
+            return false;
+        }
+            return  redisTemplate.delete("${artifactId}-${entityName}ByName::"+name);
+    }
     public void download(${entityName} entity) {
         // 配置文件下载
         response.setHeader("content-type", "application/octet-stream");
@@ -129,7 +151,7 @@ public class ${entityName}ServiceImpl {
             log.error(ex.toString());
         }
     }
-    public Result<List<${entityName}>> listBetween(RequestBetween<${entityName}> entity) {
+    public Result<List<${entityName}>> selectBetween(RequestBetween<${entityName}> entity) {
         if (entity == null) {
             return Result.createFailure(ResultCode.PARAM_IS_INVALID);
         }
@@ -181,7 +203,7 @@ public class ${entityName}ServiceImpl {
         return Result.createBySuccess(selectPage.getRecords());
     }
 
-    public <T> Result<List<${entityName}>> listQuery(RequestQuery<${entityName}, T> entity) {
+    public <T> Result<List<${entityName}>> selectQuery(RequestQuery<${entityName}, T> entity) {
         if (entity == null) {
             return Result.createFailure(ResultCode.PARAM_IS_INVALID);
         }

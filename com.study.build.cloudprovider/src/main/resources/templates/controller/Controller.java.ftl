@@ -34,7 +34,10 @@ class ${entityName}Controller {
     public Result<${entityName}> getById(@PathVariable("id") Long id) {
         return ${entityNameLower}Service.getById(id);
     }
-
+    @GetMapping("/getname/{name}")
+    public  Result<${entityName}> getByName(@PathVariable("name") String name) {
+        return ${entityNameLower}Service.getByName(name);
+    }
     @PostMapping("/getone")
     public Result<${entityName}> getOne(@RequestBody ${entityName} entity) {
         return ${entityNameLower}Service.getOne(entity);
@@ -48,6 +51,14 @@ class ${entityName}Controller {
     @PostMapping("/selectin")
     public Result<List<${entityName}>> selectIn(@RequestBody RequestIn<${entityName}, Long> entity) {
         return ${entityNameLower}Service.selectIn(entity);
+    }
+   @PostMapping("/selectbetwwen")
+   public Result<List<${entityName}>> selectBetween(@RequestBody RequestBetween<${entityName}> entity) {
+        return ${entityNameLower}Service.selectBetween(entity);
+    }
+   @PostMapping("/selectquery")
+   public Result<List<${entityName}>> selectQuery(@RequestBody RequestQuery<${entityName}, Long> entity) {
+        return ${entityNameLower}Service.selectQuery(entity);
     }
     @PostMapping("/download")
     public  void download(@RequestBody ${entityName} entity) {
