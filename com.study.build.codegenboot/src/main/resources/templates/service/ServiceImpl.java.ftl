@@ -112,8 +112,8 @@ public class ${entityName}ServiceImpl {
         response.setContentType("application/octet-stream");
         // 下载文件能正常显示中文, 可以导入 iRecorder Web IDE中的 .side 文件
         try {
-            String filename = URLEncoder.encode("testStream.side", "UTF-8");
-            response.setHeader("Content-Disposition", "attachment;filename=CodegenUser");
+            //String filename = URLEncoder.encode("testStream.side", "UTF-8");
+            response.setHeader("Content-Disposition", "attachment;filename=${entityName}");
             OutputStream os = response.getOutputStream();
             QueryWrapper<${entityName}> queryWrapper = new QueryWrapper<>(entity);
             db${entityName}Service.listFlow(queryWrapper, resultContext -> {

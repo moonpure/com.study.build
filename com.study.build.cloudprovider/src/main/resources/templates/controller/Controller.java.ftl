@@ -14,7 +14,6 @@ class ${entityName}Controller {
     @Autowired
    ${entityName}ServiceImpl ${entityNameLower}Service;
 
-
     @PostMapping("/save")
     public Result<Boolean> save(@RequestBody ${entityName} entity) {
         return ${entityNameLower}Service.save(entity);
@@ -35,11 +34,7 @@ class ${entityName}Controller {
     public Result<${entityName}> getById(@PathVariable("id") Long id) {
         return ${entityNameLower}Service.getById(id);
     }
-    @GetMapping("/getname/{name}")
-    public Result<${entityName}> getByName(@PathVariable("name") String name) {
 
-        return ${entityNameLower}Service.getByName(name);
-    }
     @PostMapping("/getone")
     public Result<${entityName}> getOne(@RequestBody ${entityName} entity) {
         return ${entityNameLower}Service.getOne(entity);
@@ -54,12 +49,8 @@ class ${entityName}Controller {
     public Result<List<${entityName}>> selectIn(@RequestBody RequestIn<${entityName}, Long> entity) {
         return ${entityNameLower}Service.selectIn(entity);
     }
-    @PutMapping("/delid/{id}")
-    public Result<Boolean> delById(@PathVariable("id") Long id) {
-        return ${entityNameLower}Service.delById(id);
-    }
-    @PostMapping("/delids")
-    public Result<Boolean> delByIds(@RequestBody List<Long> ids) {
-        return ${entityNameLower}Service.delByIds(ids);
+    @PostMapping("/download")
+    public  void download(@RequestBody ${entityName} entity) {
+        ${entityNameLower}Service.download(entity);
     }
 }
