@@ -52,7 +52,7 @@ class ${entityName}Controller {
     public Result<List<${entityName}>> selectIn(@RequestBody RequestIn<${entityName}, Long> entity) {
         return ${entityNameLower}Service.selectIn(entity);
     }
-   @PostMapping("/selectbetwwen")
+   @PostMapping("/selectbetween")
    public Result<List<${entityName}>> selectBetween(@RequestBody RequestBetween<${entityName}> entity) {
         return ${entityNameLower}Service.selectBetween(entity);
     }
