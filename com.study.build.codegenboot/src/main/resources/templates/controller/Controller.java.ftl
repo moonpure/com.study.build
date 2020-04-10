@@ -9,11 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/codegenUser")
+@RequestMapping("/${entityNameLower}")
 class ${entityName}Controller {
     @Autowired
    ${entityName}ServiceImpl ${entityNameLower}Service;
-
 
     @PostMapping("/save")
     public Result<Boolean> save(@RequestBody ${entityName} entity) {
@@ -37,7 +36,7 @@ class ${entityName}Controller {
     }
 
     @PostMapping("/getone")
-    public Result<${entityName}> getOne(@RequestBody CodegenUser entity) {
+    public Result<${entityName}> getOne(@RequestBody ${entityName} entity) {
         return ${entityNameLower}Service.getOne(entity);
     }
 
@@ -49,5 +48,9 @@ class ${entityName}Controller {
     @PostMapping("/selectin")
     public Result<List<${entityName}>> selectIn(@RequestBody RequestIn<${entityName}, Long> entity) {
         return ${entityNameLower}Service.selectIn(entity);
+    }
+    @PostMapping("/download")
+    public  void download(@RequestBody ${entityName} entity) {
+        ${entityNameLower}Service.download(entity);
     }
 }

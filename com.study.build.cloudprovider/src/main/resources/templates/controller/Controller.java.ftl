@@ -14,7 +14,6 @@ class ${entityName}Controller {
     @Autowired
    ${entityName}ServiceImpl ${entityNameLower}Service;
 
-
     @PostMapping("/save")
     public Result<Boolean> save(@RequestBody ${entityName} entity) {
         return ${entityNameLower}Service.save(entity);
@@ -36,8 +35,7 @@ class ${entityName}Controller {
         return ${entityNameLower}Service.getById(id);
     }
     @GetMapping("/getname/{name}")
-    public Result<${entityName}> getByName(@PathVariable("name") String name) {
-
+    public  Result<${entityName}> getByName(@PathVariable("name") String name) {
         return ${entityNameLower}Service.getByName(name);
     }
     @PostMapping("/getone")
@@ -54,12 +52,16 @@ class ${entityName}Controller {
     public Result<List<${entityName}>> selectIn(@RequestBody RequestIn<${entityName}, Long> entity) {
         return ${entityNameLower}Service.selectIn(entity);
     }
-    @PutMapping("/delid/{id}")
-    public Result<Boolean> delById(@PathVariable("id") Long id) {
-        return ${entityNameLower}Service.delById(id);
+   @PostMapping("/selectbetween")
+   public Result<List<${entityName}>> selectBetween(@RequestBody RequestBetween<${entityName}> entity) {
+        return ${entityNameLower}Service.selectBetween(entity);
     }
-    @PostMapping("/delids")
-    public Result<Boolean> delByIds(@RequestBody List<Long> ids) {
-        return ${entityNameLower}Service.delByIds(ids);
+   @PostMapping("/selectquery")
+   public Result<List<${entityName}>> selectQuery(@RequestBody RequestQuery<${entityName}, Long> entity) {
+        return ${entityNameLower}Service.selectQuery(entity);
+    }
+    @PostMapping("/download")
+    public  void download(@RequestBody ${entityName} entity) {
+        ${entityNameLower}Service.download(entity);
     }
 }

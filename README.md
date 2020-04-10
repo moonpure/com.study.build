@@ -15,6 +15,8 @@ git有以下独立项目(可分别独立使用),只是把项目合到一git管�
 -----com.study.build.codegenboot 生成springboot项目.   
 -----com.study.build.cloudprovider 生成springcloud provider项目.   
 -----com.study.build.cloudconsumer 生成springcloud consumer项目.  
+-----com.study.build.webfluxprovider 生成springcloud webflux provider项目.   
+-----com.study.build.webfluxconsumer 生成springcloud webflux consumer项目. 
 -----com.study.build.cloudeureka  注册中心
 ## 项目使用
 GeneratorServiceImpl类包含了生成方法，buildCodegen()方法会生成整个项目，里面分别调用不同项目文件生成.
@@ -45,7 +47,7 @@ GeneratorServiceImpl类中生成方法,mybatis-plus-generator生成通过Mybatis
 ## 二次开发
 项目使用FreeMarker模板引擎，其它模板引擎参考FreeMarkerServiceImpl实现。也可参考mybatis-plus-generator生成逻辑。  
 生成项目的组织架构更改参考GeneratorServiceImpl。  
-项目中以简单为主，实现不足、建义、交流
+如果您对这些感兴趣，欢迎star、fork、收藏、转发给予支持！
 # ---tag功能---
 项目中通过tag区分项目板本及功能列表
 ## tag 1.0.0
@@ -60,7 +62,10 @@ GeneratorServiceImpl类中生成方法,mybatis-plus-generator生成通过Mybatis
 2. springcloud consumer entity生成
 ## tag 1.3.0
 1. springcloud provider 生成test
-2. springcloud provider 使用mybatis id生成器
+2. springcloud provider 使用mybatis plus id生成器
 ## tag 1.4.0
 1. springcloud consumer 生成test
 2. springcloud provider 使用spring cache
+## tag 1.s.0
+1. springcloud webflux 生成
+

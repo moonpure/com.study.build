@@ -158,7 +158,7 @@ public class AdviceHandler {
     @ExceptionHandler(RuntimeException.class)
     @ResponseBody
     public Result runtimeExceptionHandler(RuntimeException ex) {
-                log.error(ex.toString()));
+                log.error(ex.toString());
         return Result.createFailure(ex.toString());
     }
 

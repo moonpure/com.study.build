@@ -11,7 +11,6 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -27,7 +26,7 @@ public class ObjectMappterConfig {
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         objectMapper.registerModule(createJavaTimeModule());
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-
+        //objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
         objectMapper //.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
                 //反序列化的时候如果多了其他属性,不抛出异常
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
@@ -37,13 +36,8 @@ public class ObjectMappterConfig {
                 .setSerializationInclusion(JsonInclude.Include.NON_NULL)
                 //旧日期格式
                 .setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
-        //.registerModule(timeModule)
-        //.registerModule(new ParameterNamesModule())
-        //.registerModule(new Jdk8Module());
-
         return objectMapper;
     }
-
     @Bean
     public JavaTimeModule createJavaTimeModule() {
         JavaTimeModule timeModule = new JavaTimeModule();

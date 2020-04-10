@@ -18,10 +18,9 @@ import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSeriali
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-
+import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
 @Configuration
 @EnableCaching // 启动缓存
 public class RedisCacheSerializeConfiguration {
@@ -48,7 +47,8 @@ public class RedisCacheSerializeConfiguration {
         ObjectMapper objectMapper=new ObjectMapper();
         //下面两个序要定义，但又不能用外面的，所以这新建了
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
+        //objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         //sona扫描
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         objectMapper.registerModule(javaTimeModule);

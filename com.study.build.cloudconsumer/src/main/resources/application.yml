@@ -21,8 +21,8 @@ mybatisPlus:
 buildconfig:
   packageName: com.study.build.cloudconsumer
   artifactName: CodegenCloudConsumer
-  artifactId: codegen-build-cloudconsumer
-  springBootVersion: 2.2.5.RELEASE
+  artifactId: feignconsumer
+  springBootVersion: 2.2.6.RELEASE
   springCloudVersion: Hoxton.SR3
   projectVersion: 1.0.0
   saveDir: /Users/huangqijun/tem/cloudconsumer
