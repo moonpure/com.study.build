@@ -5,6 +5,7 @@ import ${packageName}.feignservice.entity.${entityName};
 import ${packageName}.feignservice.feign.${entityName}Feign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -32,8 +33,17 @@ public class ${entityName}ServiceImpl {
         return ${entityNameLower}Feign.getById(id);
     }
 
-    public Result<${entityName}> getOne(String name) {
-        return ${entityNameLower}Feign.getOne(name);
+    public Result<${entityName}> getByName(String name) {
+        if(StringUtils.isAllBlank(name)){
+            return Result.createFailure(ResultCode.PARAM_IS_INVALID);
+        }
+        return ${entityNameLower}Feign.getByName(name);
+    }
+    public Result<${entityName}> getOne(${entityName} entity) {
+        if (entity == null ) {
+            return Result.createFailure(ResultCode.PARAM_IS_INVALID);
+        }
+        return ${entityNameLower}Feign.getOne(entity);
     }
     public Result<List<${entityName}>> selectPage(RequestPage<${entityName}> entity) {
         if (entity == null ) {

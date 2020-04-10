@@ -27,7 +27,9 @@ public class ${entityName}Fallback implements ${entityName}Feign {
     public Result<${entityName}> getById(Long id) {
         return null;
     }
-
+    @Override
+    public Result<${entityName}> getByName(String name) { return null;
+        }
     @Override
     public Result<${entityName}> getOne(${entityName} entity) {
         return null;

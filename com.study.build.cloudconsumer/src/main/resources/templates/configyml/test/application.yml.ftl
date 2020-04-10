@@ -13,5 +13,13 @@ eureka:
    client:
       service-url:
          defaultZone: http://localhost:8100/eureka/
+management:
+    endpoints:
+        jmx:
+            exposure:
+                include: "*"
+        web:
+            exposure:
+                include: "*"
 feignconfig:
-   providename: codegen-build-cloudprovider-test
+   providename: codegen-provider-test

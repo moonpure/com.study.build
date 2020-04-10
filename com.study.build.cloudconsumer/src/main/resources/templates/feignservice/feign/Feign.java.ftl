@@ -23,10 +23,10 @@ public interface ${entityName}Feign {
 
     @GetMapping("/getid/{id}")
     Result<${entityName}> getById(@PathVariable("id") Long id);
-
-    @PostMapping("/getone/{name}")
-    Result<${entityName}> getOne(@PathVariable("name") String name);
-
+    @GetMapping("/getname/{name}")
+    Result<${entityName}> getByName(@PathVariable("name") String name);
+    @PostMapping("/getone")
+    Result<${entityName}> getOne(@RequestBody ${entityName} entity);
     @PostMapping("/select")
     Result<List<${entityName}>> selectPage(@RequestBody RequestPage<${entityName}> entity);
     @PostMapping("/selectin")

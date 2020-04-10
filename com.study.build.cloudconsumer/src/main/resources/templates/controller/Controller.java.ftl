@@ -36,11 +36,14 @@ class ${entityName}Controller {
         return ${entityNameLower}Service.getById(id);
     }
 
-    @GetMapping("/getone/{name}")
-    public Result<${entityName}> getOne(@PathVariable("name") String name) {
+    @PostMapping("/getone")
+    public Result<${entityName}> getOne(@RequestBody ${entityName} entity) {
         return ${entityNameLower}Service.getOne(entity);
     }
-
+    @GetMapping("/getname/{name}")
+    public Result<${entityName}> getByName(@PathVariable("name") String name) {
+        return ${entityNameLower}Service.getByName(name);
+        }
     @PostMapping("/select")
     public Result<List<${entityName}>> selectPage(@RequestBody RequestPage<${entityName}> entity) {
         return ${entityNameLower}Service.selectPage(entity);
