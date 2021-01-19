@@ -5,17 +5,18 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class BetweenBase<T> {
+public class BetweenBase
+<T> {
     /**
-     * Between查询的列名
-     */
+    * Between查询的列名
+    */
     private String columnName;
     /**
-     * between开始值，闭值
-     */
+    * between开始值，闭值
+    */
     private T beginValues;
     /**
-     * between结束值，开值
-     */
+    * between结束值，开值
+    */
     private T endValues;
-}
+    }

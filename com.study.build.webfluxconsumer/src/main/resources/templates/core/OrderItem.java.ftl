@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class OrderItem {
-    private String column;
-    private boolean asc = true;
+private String column;
+private boolean asc = true;
 }

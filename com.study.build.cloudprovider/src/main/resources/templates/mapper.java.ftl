@@ -11,20 +11,20 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.mapping.ResultSetType;
 import org.apache.ibatis.session.ResultHandler;
 /**
- * <p>
- * ${table.comment!} Mapper 接口
- * </p>
- *
- * @author ${author}
- * @since ${date}
- */
+* <p>
+    * ${table.comment!} Mapper 接口
+    * </p>
+*
+* @author ${author}
+* @since ${date}
+*/
 <#if kotlin>
-interface ${table.mapperName} : ${superMapperClass}<${entity}>
+    interface ${table.mapperName} : ${superMapperClass}<${entity}>
 <#else>
-public interface ${table.mapperName} extends ${superMapperClass}<${entity}> {
-@Select("select * from ${table.name}  <#noparse>${ew.customSqlSegment}</#noparse>")
-@Options(resultSetType = ResultSetType.FORWARD_ONLY, fetchSize = 100)
-@ResultType(${entity}.class)
- void listFlow(@Param(Constants.WRAPPER) QueryWrapper<${entity}> wrapper, ResultHandler<${entity}> handler);
-}
+    public interface ${table.mapperName} extends ${superMapperClass}<${entity}> {
+    @Select("select * from ${table.name}  <#noparse>${ew.customSqlSegment}</#noparse>")
+    @Options(resultSetType = ResultSetType.FORWARD_ONLY, fetchSize = 100)
+    @ResultType(${entity}.class)
+    void listFlow(@Param(Constants.WRAPPER) QueryWrapper<${entity}> wrapper, ResultHandler<${entity}> handler);
+    }
 </#if>

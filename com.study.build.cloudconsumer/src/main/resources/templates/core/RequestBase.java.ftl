@@ -7,7 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class RequestBase<T> {
+public class RequestBase
+<T> {
     private T data;
-}
+    }
 

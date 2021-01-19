@@ -24,7 +24,8 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <#noparse><version>${spring-cloud.version}</version></#noparse>
+                <#noparse>
+                    <version>${spring-cloud.version}</version></#noparse>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -179,7 +180,8 @@
                 <filtering>true</filtering>
             </resource>
             <resource>
-                <#noparse><directory>src/main/resources/${maven.env}</directory></#noparse>
+                <#noparse>
+                    <directory>src/main/resources/${maven.env}</directory></#noparse>
                 <includes>
                     <include>*.yml</include>
                     <include>*.xml</include>
@@ -201,7 +203,8 @@
                 <filtering>true</filtering>
             </testResource>
             <testResource>
-                <#noparse><directory>src/main/resources/${maven.env}</directory></#noparse>
+                <#noparse>
+                    <directory>src/main/resources/${maven.env}</directory></#noparse>
                 <includes>
                     <include>*.yml</include>
                     <include>*.xml</include>
