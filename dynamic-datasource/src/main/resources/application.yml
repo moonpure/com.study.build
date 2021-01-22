@@ -1,0 +1,28 @@
+server:
+  port: 0
+spring:
+  application:
+    name: codegen-dynamic-db
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    name: cloud_meeting
+    url: jdbc:mysql://dev-new-tojoyboss.mysql.rds.aliyuncs.com:3306/information_schema?serverTimezone=UTC&characterEncoding=utf8&useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai
+    username: dev_tojoy_cloud
+    password: Q4uGvQeNo3O7AIYd
+#配置mybatis
+mybatisPlus:
+  #打印日志
+  configuration:
+     logImpl: org.apache.ibatis.logging.stdout.StdOutImpl
+buildconfig:
+  appName: BosscoudIntelligence
+  groupId: com.bosscloud
+  packageName: com.bosscloud.intelligence
+  artifactName: bosscoud-intelligence
+  artifactId: bosscoud-intelligence
+  springBootVersion: 2.4.2
+  springCloudVersion: 2020.0.0
+  projectVersion: 1.0.0
+  saveDir: /Users/huangqijun/tem/bosscloud-intelligence
+  tableSchema: bosscloud_user
+  dbDataSource: bossuser
