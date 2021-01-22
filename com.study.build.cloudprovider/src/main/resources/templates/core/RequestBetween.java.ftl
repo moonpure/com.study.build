@@ -8,7 +8,13 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class RequestBetween<T> extends RequestPage<T> {
-    List<BetweenBase<Long>> betweenLong;
-    List<BetweenBase<LocalDateTime>> betweenDate;
-}
+public class RequestBetween
+<T> extends RequestPage
+    <T> {
+        List
+        <BetweenBase
+        <Long>> betweenLong;
+            List
+            <BetweenBase
+            <LocalDateTime>> betweenDate;
+                }

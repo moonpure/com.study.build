@@ -8,31 +8,38 @@
     <Properties>
         <!-- 格式化输出：%date表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度 %msg：日志消息，%n是换行符-->
         <!-- %logger{36} 表示 Logger 名字最长36个字符 -->
-        <property name="LOG_PATTERN" value="[%d{yyy-MM-dd HH:mm:ss:SSS}] [%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId},%X{X-Span-Export}] [%thread] %-5level %logger{36} - %msg%n" />
+        <property name="LOG_PATTERN"
+                  value="[%d{yyy-MM-dd HH:mm:ss:SSS}] [%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId},%X{X-Span-Export}] [%thread] %-5level %logger{36} - %msg%n"/>
         <!-- 定义日志存储的路径 -->
-        <property name="FILE_PATH" value="/Users/huangqijun/logs/" />
-        <property name="FILE_NAME" value="${artifactName}" />
+        <property name="FILE_PATH" value="/Users/huangqijun/logs/"/>
+        <property name="FILE_NAME" value="${artifactName}"/>
     </Properties>
 
     <appenders>
 
         <console name="Console" target="SYSTEM_OUT">
             <!--输出日志的格式-->
-            <#noparse> <PatternLayout pattern="${LOG_PATTERN}"/></#noparse>
-               <!--控制台只输出level及其以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <#noparse>
+                <PatternLayout pattern="${LOG_PATTERN}"/></#noparse>
+            <!--控制台只输出level及其以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
             <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
         </console>
 
         <!--文件会打印出所有信息，这个log每次运行程序会自动清空，由append属性决定，适合临时测试用-->
-        <#noparse><File name="Filelog" fileName="${FILE_PATH}/test.log" append="false"></#noparse>
-            <#noparse><PatternLayout pattern="${LOG_PATTERN}"/></#noparse>
+        <#noparse>
+        <File name="Filelog" fileName="${FILE_PATH}/test.log" append="false"></#noparse>
+            <#noparse>
+                <PatternLayout pattern="${LOG_PATTERN}"/></#noparse>
         </File>
 
         <!-- 这个会打印出所有的info及以下级别的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->
-        <#noparse><RollingFile name="RollingFileInfo" fileName="${FILE_PATH}/info.log" filePattern="${FILE_PATH}/${FILE_NAME}-INFO-%d{yyyy-MM-dd}_%i.log.gz"></#noparse>
+        <#noparse>
+        <RollingFile name="RollingFileInfo" fileName="${FILE_PATH}/info.log"
+                     filePattern="${FILE_PATH}/${FILE_NAME}-INFO-%d{yyyy-MM-dd}_%i.log.gz"></#noparse>
             <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
             <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
-            <#noparse><PatternLayout pattern="${LOG_PATTERN}"/></#noparse>
+            <#noparse>
+                <PatternLayout pattern="${LOG_PATTERN}"/></#noparse>
             <Policies>
                 <!--interval属性用来指定多久滚动一次，默认是1 hour-->
                 <TimeBasedTriggeringPolicy interval="1"/>
@@ -43,10 +50,13 @@
         </RollingFile>
 
         <!-- 这个会打印出所有的warn及以下级别的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->
-        <#noparse><RollingFile name="RollingFileWarn" fileName="${FILE_PATH}/warn.log" filePattern="${FILE_PATH}/${FILE_NAME}-WARN-%d{yyyy-MM-dd}_%i.log.gz"></#noparse>
+        <#noparse>
+        <RollingFile name="RollingFileWarn" fileName="${FILE_PATH}/warn.log"
+                     filePattern="${FILE_PATH}/${FILE_NAME}-WARN-%d{yyyy-MM-dd}_%i.log.gz"></#noparse>
             <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
             <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
-            <#noparse> <PatternLayout pattern="${LOG_PATTERN}"/></#noparse>
+            <#noparse>
+                <PatternLayout pattern="${LOG_PATTERN}"/></#noparse>
             <Policies>
                 <!--interval属性用来指定多久滚动一次，默认是1 hour-->
                 <TimeBasedTriggeringPolicy interval="1"/>
@@ -57,10 +67,13 @@
         </RollingFile>
 
         <!-- 这个会打印出所有的error及以下级别的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->
-        <#noparse><RollingFile name="RollingFileError" fileName="${FILE_PATH}/error.log" filePattern="${FILE_PATH}/${FILE_NAME}-ERROR-%d{yyyy-MM-dd}_%i.log.gz"></#noparse>
+        <#noparse>
+        <RollingFile name="RollingFileError" fileName="${FILE_PATH}/error.log"
+                     filePattern="${FILE_PATH}/${FILE_NAME}-ERROR-%d{yyyy-MM-dd}_%i.log.gz"></#noparse>
             <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
             <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
-            <#noparse><PatternLayout pattern="${LOG_PATTERN}"/></#noparse>
+            <#noparse>
+                <PatternLayout pattern="${LOG_PATTERN}"/></#noparse>
             <Policies>
                 <!--interval属性用来指定多久滚动一次，默认是1 hour-->
                 <TimeBasedTriggeringPolicy interval="1"/>

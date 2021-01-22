@@ -12,23 +12,30 @@ import java.util.List;
 
 @FeignClient(name = <#noparse>"${feignconfig.providename}"</#noparse>, path = "${entityNameLower}",contextId ="${entityNameLower}",fallback = ${entityName}Fallback.class)
 public interface ${entityName}Feign {
-    @PostMapping("/save")
-    Result<Boolean> save(@RequestBody ${entityName} entity);
+@PostMapping("/save")
+Result
+<Boolean> save(@RequestBody ${entityName} entity);
 
     @PostMapping("/updateid")
-    Result<Boolean> updateById(@RequestBody ${entityName} entity);
+    Result
+    <Boolean> updateById(@RequestBody ${entityName} entity);
 
-    @PostMapping("/update")
-    Result<Boolean> update(@RequestBody List<${entityName}> entities);
+        @PostMapping("/update")
+        Result
+        <Boolean> update(@RequestBody List<${entityName}> entities);
 
-    @GetMapping("/getid/{id}")
-    Result<${entityName}> getById(@PathVariable("id") Long id);
-    @GetMapping("/getname/{name}")
-    Result<${entityName}> getByName(@PathVariable("name") String name);
-    @PostMapping("/getone")
-    Result<${entityName}> getOne(@RequestBody ${entityName} entity);
-    @PostMapping("/select")
-    Result<List<${entityName}>> selectPage(@RequestBody RequestPage<${entityName}> entity);
-    @PostMapping("/selectin")
-     Result<List<${entityName}>> selectIn(@RequestBody RequestIn<${entityName}, Long> entity);
-}
+            @GetMapping("/getid/{id}")
+            Result<${entityName}> getById(@PathVariable("id") Long id);
+            @GetMapping("/getname/{name}")
+            Result<${entityName}> getByName(@PathVariable("name") String name);
+            @PostMapping("/getone")
+            Result<${entityName}> getOne(@RequestBody ${entityName} entity);
+            @PostMapping("/select")
+            Result
+            <List
+            <${entityName}>> selectPage(@RequestBody RequestPage<${entityName}> entity);
+            @PostMapping("/selectin")
+            Result
+            <List
+            <${entityName}>> selectIn(@RequestBody RequestIn<${entityName}, Long> entity);
+            }

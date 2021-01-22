@@ -17,7 +17,7 @@ spring:
 mybatisPlus:
   #打印日志
   configuration:
-     logImpl: org.apache.ibatis.logging.stdout.StdOutImpl
+    logImpl: org.apache.ibatis.logging.stdout.StdOutImpl
 buildconfig:
   packageName: com.study.build.cloudconsumer
   artifactName: CodegenCloudConsumer

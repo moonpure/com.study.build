@@ -9,13 +9,16 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class RequestIn<T,V> extends RequestBase<T> {
+public class RequestIn
+<T,V> extends RequestBase
+<T> {
     /**
-     * in查询的列名
-     */
+    * in查询的列名
+    */
     private String columnName;
     /**
-     * in 值列表
-     */
-    private List<V> inValues;
-}
+    * in 值列表
+    */
+    private List
+    <V> inValues;
+        }

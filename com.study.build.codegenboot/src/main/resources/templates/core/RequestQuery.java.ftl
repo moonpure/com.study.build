@@ -7,13 +7,16 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class RequestQuery<T, V> extends RequestBetween<T> {
+public class RequestQuery
+<T, V> extends RequestBetween
+<T> {
     /**
-     * in查询的列名
-     */
+    * in查询的列名
+    */
     private String columnName;
     /**
-     * in 值列表
-     */
-    private List<V> inValues;
-}
+    * in 值列表
+    */
+    private List
+    <V> inValues;
+        }

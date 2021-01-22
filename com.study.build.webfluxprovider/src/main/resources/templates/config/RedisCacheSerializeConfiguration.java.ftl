@@ -26,25 +26,27 @@ import java.time.Duration;
 @EnableCaching // 启动缓存
 public class RedisCacheSerializeConfiguration {
 
-    @Bean
-    public RedisCacheManager cacheManager(RedisConnectionFactory connectionFactory) {
-        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofHours(5))
-                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(keySerializer()))
-                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(valueSerializer()));
-                //.disableCachingNullValues();
-        RedisCacheManager redisCacheManager = RedisCacheManager.builder(connectionFactory).cacheDefaults(config)
-                .transactionAware().build();
-        return redisCacheManager;
-    }
+@Bean
+public RedisCacheManager cacheManager(RedisConnectionFactory connectionFactory) {
+RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofHours(5))
+.serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(keySerializer()))
+.serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(valueSerializer()));
+//.disableCachingNullValues();
+RedisCacheManager redisCacheManager = RedisCacheManager.builder(connectionFactory).cacheDefaults(config)
+.transactionAware().build();
+return redisCacheManager;
+}
 
-    private RedisSerializer<String> keySerializer() {
-        return new StringRedisSerializer();
+private RedisSerializer
+<String> keySerializer() {
+    return new StringRedisSerializer();
     }
 
     @Autowired
-   JavaTimeModule javaTimeModule;
+    JavaTimeModule javaTimeModule;
 
-    private RedisSerializer<Object> valueSerializer() {
+    private RedisSerializer
+    <Object> valueSerializer() {
         ObjectMapper objectMapper=new ObjectMapper();
         //下面两个序要定义，但又不能用外面的，所以这新建了
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
@@ -56,12 +58,12 @@ public class RedisCacheSerializeConfiguration {
 
         //反序列化的时候如果多了其他属性,不抛出异常
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-                //如果是空对象的时候,不抛异常
-                .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
-                //如为空则不序列化
-                .setSerializationInclusion(JsonInclude.Include.NON_NULL)
-                //旧日期格式
-                .setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+        //如果是空对象的时候,不抛异常
+        .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
+        //如为空则不序列化
+        .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+        //旧日期格式
+        .setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
         return new GenericJackson2JsonRedisSerializer(objectMapper);
-    }
-}
+        }
+        }

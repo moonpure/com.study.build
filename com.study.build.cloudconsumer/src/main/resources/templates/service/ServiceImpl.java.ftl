@@ -11,54 +11,64 @@ import java.util.List;
 
 @Service
 public class ${entityName}ServiceImpl {
-    @Autowired
-    ${entityName}Feign ${entityNameLower}Feign;
+@Autowired
+${entityName}Feign ${entityNameLower}Feign;
 
-    public Result<Boolean> save(${entityName} entity) {
-      return ${entityNameLower}Feign.save(entity);
+public Result
+<Boolean> save(${entityName} entity) {
+    return ${entityNameLower}Feign.save(entity);
     }
-    public Result<Boolean> updateById(${entityName} entity) {
-       return ${entityNameLower}Feign.updateById(entity);
-    }
-    public Result<Boolean> update(List<${entityName}> entities) {
-        if (entities == null || entities.size() != 2) {
-            return Result.createFailure(ResultCode.PARAM_IS_INVALID);
+    public Result
+    <Boolean> updateById(${entityName} entity) {
+        return ${entityNameLower}Feign.updateById(entity);
         }
-        return ${entityNameLower}Feign.update(entities);
-    }
-    public Result<${entityName}> getById(Long id) {
-        if (id == null || id <= 0) {
+        public Result
+        <Boolean> update(List<${entityName}> entities) {
+            if (entities == null || entities.size() != 2) {
             return Result.createFailure(ResultCode.PARAM_IS_INVALID);
-        }
-        return ${entityNameLower}Feign.getById(id);
-    }
+            }
+            return ${entityNameLower}Feign.update(entities);
+            }
+            public Result<${entityName}> getById(Long id) {
+            if (id == null || id <= 0) {
+            return Result.createFailure(ResultCode.PARAM_IS_INVALID);
+            }
+            return ${entityNameLower}Feign.getById(id);
+            }
 
-    public Result<${entityName}> getByName(String name) {
-        if(StringUtils.isAllBlank(name)){
+            public Result<${entityName}> getByName(String name) {
+            if(StringUtils.isAllBlank(name)){
             return Result.createFailure(ResultCode.PARAM_IS_INVALID);
-        }
-        return ${entityNameLower}Feign.getByName(name);
-    }
-    public Result<${entityName}> getOne(${entityName} entity) {
-        if (entity == null ) {
+            }
+            return ${entityNameLower}Feign.getByName(name);
+            }
+            public Result<${entityName}> getOne(${entityName} entity) {
+            if (entity == null ) {
             return Result.createFailure(ResultCode.PARAM_IS_INVALID);
-        }
-        return ${entityNameLower}Feign.getOne(entity);
-    }
-    public Result<List<${entityName}>> selectPage(RequestPage<${entityName}> entity) {
-        if (entity == null ) {
+            }
+            return ${entityNameLower}Feign.getOne(entity);
+            }
+            public Result
+            <List
+            <${entityName}>> selectPage(RequestPage<${entityName}> entity) {
+            if (entity == null ) {
             return Result.createFailure(ResultCode.PARAM_IS_INVALID);
-        }
-        return ${entityNameLower}Feign.selectPage(entity);
-    }
-    public <T> Result<List<${entityName}>> selectIn(RequestIn<${entityName},Long> entity){
-        return ${entityNameLower}Feign.selectIn(entity);
-    }
-    public <T> T convertResult(Result<T> tResult) {
-        if(tResult==null||tResult.getCode()!=ResultCode.SUCCESS.getCode())
-        {
-        return null;
-        }
-        return tResult.getData();
-    }
-}
+            }
+            return ${entityNameLower}Feign.selectPage(entity);
+            }
+            public
+            <T> Result
+                <List
+                <${entityName}>> selectIn(RequestIn<${entityName},Long> entity){
+                return ${entityNameLower}Feign.selectIn(entity);
+                }
+                public
+                <T> T convertResult(Result
+                    <T> tResult) {
+                        if(tResult==null||tResult.getCode()!=ResultCode.SUCCESS.getCode())
+                        {
+                        return null;
+                        }
+                        return tResult.getData();
+                        }
+                        }
