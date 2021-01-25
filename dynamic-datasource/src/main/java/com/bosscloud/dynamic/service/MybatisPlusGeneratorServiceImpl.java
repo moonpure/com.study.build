@@ -35,6 +35,7 @@ public class MybatisPlusGeneratorServiceImpl {
         tableFillList.add(sysCreateTime);
         tableFillList.add(sysUpdateTime);
         tableFillList.add(new TableFill("id", FieldFill.INSERT));
+
         StrategyConfig strategyConfig = new StrategyConfig();
         strategyConfig.setCapitalMode(true)
                 .setEntityLombokModel(true)
@@ -42,7 +43,7 @@ public class MybatisPlusGeneratorServiceImpl {
                 .setNaming(NamingStrategy.underline_to_camel)
                 .setVersionFieldName("version")
                 .setLogicDeleteFieldName("deleted")
-                .setTableFillList(tableFillList)
+                //.setTableFillList(tableFillList)
                 .setInclude(tableNames.toArray(new String[tableNames.size()]));//修改替换成你需要的表名，多个表名传数组
 
 
@@ -54,7 +55,7 @@ public class MybatisPlusGeneratorServiceImpl {
                 .setOpen(false)
                 .setBaseResultMap(false)
                 .setBaseColumnList(false)
-                .setServiceName("Db%sService")
+               // .setServiceName("Db%sService")
                 .setServiceImplName("Db%sServiceImpl")
 
                 // .setControllerName("%sController")
@@ -123,8 +124,9 @@ public class MybatisPlusGeneratorServiceImpl {
                 .setXml("mapper.xml")
                 .setMapper("dao.dbmapper."+readConfigService.getDbDataSource())//改名，加模快
                 // .setController("controller")
-                .setService("dao.dbservice."+readConfigService.getDbDataSource())
-                .setServiceImpl("dao.dbservice.impl."+readConfigService.getDbDataSource())
+                .setService("")
+             //   .setService("dao.dbservice."+readConfigService.getDbDataSource())
+                .setServiceImpl("dao.dbservice."+readConfigService.getDbDataSource())
                 .setEntity("dao.dbmodel."+readConfigService.getDbDataSource());
     }
 }

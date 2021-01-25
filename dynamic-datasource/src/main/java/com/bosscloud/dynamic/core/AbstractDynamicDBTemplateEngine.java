@@ -76,12 +76,12 @@ public abstract class AbstractDynamicDBTemplateEngine  extends AbstractTemplateE
                     }
                 }
 
-                if (null != tableInfo.getServiceName() && null != pathInfo.get("service_path")) {
-                    controllerFile = String.format((String)pathInfo.get("service_path") + File.separator + tableInfo.getServiceName() + this.suffixJavaOrKt(), entityName);
-                    if (this.isCreate(FileType.SERVICE, controllerFile)) {
-                        this.writer(objectMap, this.templateFilePath(template.getService()), controllerFile);
-                    }
-                }
+//                if (null != tableInfo.getServiceName() && null != pathInfo.get("service_path")) {
+//                    controllerFile = String.format((String)pathInfo.get("service_path") + File.separator + tableInfo.getServiceName() + this.suffixJavaOrKt(), entityName);
+//                    if (this.isCreate(FileType.SERVICE, controllerFile)) {
+//                        this.writer(objectMap, this.templateFilePath(template.getService()), controllerFile);
+//                    }
+//                }
 
                 if (null != tableInfo.getServiceImplName() && null != pathInfo.get("service_impl_path")) {
                     controllerFile = String.format((String)pathInfo.get("service_impl_path") + File.separator + tableInfo.getServiceImplName() + this.suffixJavaOrKt(), entityName);
