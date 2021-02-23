@@ -57,6 +57,7 @@ public class MybatisPlusGeneratorServiceImpl {
                 .setBaseColumnList(false)
                // .setServiceName("Db%sService")
                 .setServiceImplName("Db%sServiceImpl")
+                .setMapperName(readConfigService.getMapperPrefix()+"%sMapper")
 
                 // .setControllerName("%sController")
                 .setIdType(IdType.INPUT);
@@ -86,7 +87,7 @@ public class MybatisPlusGeneratorServiceImpl {
 
         FreemarkerDynamicDBTemplateEngine freemarkerTemplateEngine = new FreemarkerDynamicDBTemplateEngine();
         freemarkerTemplateEngine.appendMap("dbDataSource",readConfigService.getDbDataSource());
-
+        freemarkerTemplateEngine.appendMap("mapperPrefix",readConfigService.getMapperPrefix());
 
         HikariConfig hikariConfig = (HikariConfig) dataSource;
         DataSourceConfig dataSourceConfig = new DataSourceConfig();

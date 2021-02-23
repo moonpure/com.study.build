@@ -16,7 +16,7 @@ import org.apache.ibatis.session.ResultHandler;
  * @author ${author}
  * @since ${date}
  */
-@Service
+@Service("${dbDataSource}${table.serviceName}")
 <#if kotlin>
 open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperName}, ${entity}>(), ${table.serviceName} {
 

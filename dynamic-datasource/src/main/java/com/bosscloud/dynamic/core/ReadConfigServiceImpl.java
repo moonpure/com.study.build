@@ -20,6 +20,6 @@ public class ReadConfigServiceImpl {
     private String tableSchema = "information_schema";
     private String springCloudVersion = "Hoxton.SR3";
     private String appName="BosscoudIntelligence";
-    private String dbDataSource="user";
-
+    private String dbDataSource="BossUser";
+    private String mapperPrefix="User";
 }

@@ -6,9 +6,9 @@ spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     name: cloud_meeting
-    url: jdbc:mysql://localhot:3306/information_schema?serverTimezone=UTC&characterEncoding=utf8&useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai
-    username: local
-    password: local
+    url: jdbc:mysql://rm-m5e19w8j5bau84yju.mysql.rds.aliyuncs.com:3306/information_schema?serverTimezone=UTC&characterEncoding=utf8&useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai
+    username: bosscloud_code
+    password: ZFZ$npw%DhYJpue%
 #配置mybatis
 mybatisPlus:
   #打印日志
@@ -24,5 +24,6 @@ buildconfig:
   springCloudVersion: 2020.0.0
   projectVersion: 1.0.0
   saveDir: /Users/huangqijun/tem/bosscloud-intelligence
-  tableSchema: bosscloud_video
-  dbDataSource: bossvideo
+  tableSchema: bosscloud_user
+  dbDataSource: bossuser
+  mapperPrefix: User
