@@ -21,8 +21,8 @@ import org.apache.ibatis.session.ResultHandler;
 
     }
 <#else>
-    public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
-    @Override
+    public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}>  {
+
     public void listFlow(QueryWrapper<${entity}> wrapper, ResultHandler<${entity}> handler) {
     super.getBaseMapper().listFlow(wrapper,handler);
     }

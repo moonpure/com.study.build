@@ -2,7 +2,7 @@ server:
   port: 0
 spring:
   application:
-    name: codegen-cloudprovider
+    name: cust-track
   redis:
     host: localhost
     password:
@@ -10,20 +10,20 @@ spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     name: bosscloud_app
-    url: jdbc:mysql://local:3306/information_schema?serverTimezone=UTC&characterEncoding=utf8&useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai
-    username: local
-    password: local
+    url: jdbc:mysql://82.157.45.178:3306/information_schema?serverTimezone=UTC&characterEncoding=utf8&useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: Admin_talent
 #配置mybatis
 mybatisPlus:
   #打印日志
   configuration:
     logImpl: org.apache.ibatis.logging.stdout.StdOutImpl
 buildconfig:
-  packageName: com.study.build.cloudprovider
-  artifactName: CodegenProvider
-  artifactId: codegen-provider
-  springBootVersion: 2.3.5.RELEASE
-  springCloudVersion: Hoxton.SR9
+  packageName: com.talent
+  artifactName: talent-user
+  artifactId: talent-user
+  springBootVersion: 2.5.4
+  springCloudVersion: 2020.0.3
   projectVersion: 1.0.0
-  saveDir: /Users/huangqijun/tem/cloudprovider
-  tableSchema: bosscloud_sundries_platform
+  saveDir: /Users/huangqijun/tem/talent-user
+  tableSchema: talent_user
