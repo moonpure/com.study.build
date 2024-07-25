@@ -66,6 +66,6 @@ GeneratorServiceImpl类中生成方法,mybatis-plus-generator生成通过Mybatis
 ## tag 1.4.0
 1. springcloud consumer 生成test
 2. springcloud provider 使用spring cache
-## tag 1.s.0
+## tag 1.5.0
 1. springcloud webflux 生成
 
